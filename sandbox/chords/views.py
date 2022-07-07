@@ -32,6 +32,14 @@ def login_view(request):
 def register_view(request):
     if request.method == 'POST':
         username = request.POST['username']
+        email = request.POST['email']
+
+        # Check that email is not taken
+        if len(CustomUser.objects.filter(email=email)) != 0:
+            return render(request, 'chords/register.html', {
+                'message': 'Email already taken.'
+            })
+            
         # Check that passwords matches
         password = request.POST['password']
         confirm_password = request.POST['confirmation']
@@ -42,7 +50,7 @@ def register_view(request):
 
         # Attempt to create new user
         try:
-            user = CustomUser.objects.create_user(username, password)
+            user = CustomUser.objects.create_user(username=username, email=email, password=password)
             user.save()
         except IntegrityError:
             return render(request, 'chords/register.html', {
@@ -52,7 +60,6 @@ def register_view(request):
         return HttpResponseRedirect(reverse('index'))
     else:
         return render(request, 'chords/register.html')
-
 
 def logout_view(request):
     logout(request)
