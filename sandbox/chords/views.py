@@ -11,6 +11,11 @@ def index(request):
     else:
         return HttpResponseRedirect(reverse('login'))
 
+def tracks_view(request):
+    tracks = Track.objects.all()
+    print(tracks)
+    return render(request, 'chords/tracks.html', {'tracks': tracks})
+
 def login_view(request):
     if request.method == 'POST':
 

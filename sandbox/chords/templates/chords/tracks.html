@@ -1,0 +1,9 @@
+{% extends 'chords/layout.html' %}
+
+{% block body %}
+    {% for item in tracks %}
+    <div>
+        {{ item.name }} {{ item.creator }}
+    </div>
+    {% endfor %}
+{% endblock %}

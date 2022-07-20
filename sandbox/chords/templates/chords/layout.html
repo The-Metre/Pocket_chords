@@ -6,6 +6,13 @@
     </head>
     <body>
         <div class="container">
+            <h2>
+                <a class="navbar-brand" href="{% url 'index' %}">TODO</a>
+            </h2>
+            <a class="btn btn-sm btn-outline-primary" href="#">TODO Artists</a>
+            <a class="btn btn-sm btn-outline-primary" href="{% url 'tracks' %}">TODO Tracks</a>
+            <a class="btn btn-sm btn-outline-primary" href="#">TODO Songbook</a>
+            <a class="btn btn-sm btn-outline-primary" href="{% url 'logout' %}">Log Out</a>
             {% block body%}
             {% endblock %}
         </div>
